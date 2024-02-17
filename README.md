@@ -139,7 +139,7 @@ The same realisation as an array but with a different idea. Basically, we stack 
 The concept of Stack is used in lots of concepts that I'll cover later: recursion, backtracking etc.
 
 ## Use cases <br>
-* If inside the loop we need to dynamically add/remove/check item at the end.
+* If inside the loop we need to dynamically add/remove/check items at the end.
 
 ## Problems <br>
 [Valid parentheses](https://leetcode.com/problems/valid-parentheses/)
@@ -154,7 +154,7 @@ An algorithm that uses a two-pointer and intelligently updates each pointer depe
 
 ## Use cases
 * Get two/three sum from `sorted` array
-* Check if string is palindrome
+* Check if a string is palindrome
 
 ## Example
 
@@ -210,31 +210,31 @@ return true;
 ------------------------------------------------------------------------------------------------------
 
 # 5. Sliding window
-Implementation is pretty similar to two pointer algorithm. The difference is, we constantlly check whole `window` value, when we shift some of the pointers.
+Implementation is pretty similar to two pointer algorithm. The difference is, that we constantly check the whole `window` value, when we shift some of the pointers.
 
 ## Use cases
 * Calculate the longest unique substring, with or without replacement
-* Check if one string exist inside another
+* Check if one string exists inside another
 * Minimum size of subarray sum
 
 ## Example
 
-Given string `s`, find length of the longest unique substring.
+Given string `s`, find the length of the longest unique substring.
 
 `s` = `"abcabcbb"` <br>
 
 So the returned value should be `3`, since `abc` is our result. <br>
 
-First we need to create some `store` to check whitch characters is included inside current `window`. <br>
-For this purpose let's create hashset `chars`, inside it we will store each char. <br>
-Then initialisate two pointers `left` and `right`, thouse will represent `start` and the `end` of current `window` <br>
+First, we need to create some `store` to check which characters are included inside the current `window`. <br>
+For this purpose let's create HashSet `chars`, inside it we will store each char. <br>
+Then initialise two pointers `left` and `right`, which will represent `start` and the `end` of the current `window` <br>
 
-Then we need to run loop, and with each iteration we will expand our `window` by incrementing `right` by one. <br>
-While we are expanding, we need to also check if current char is not present in our `chars`, and update hashset with new char. <br>
-Otherwise that's means that `widow` substring is not unique, we will delete char from `chars`, while current string is present in store. <br>
-With each deletion we shift `left` pointer to shrink `window` size. <br>
+Then we need to run a loop, and with each iteration, we will expand our `window` by incrementing `right` by one. <br>
+While we are expanding, we need also to check if the current char is not present in our `chars`, and update HashSet with a new char. <br>
+Otherwise, that's means that `widow` substring is not unique, we will delete char from `chars`, while the current string is present in the store. <br>
+With each deletion, we shift `left` pointer to shrink `window` size. <br>
 
-For example we start iterating `right` from index `0`: <br>
+For example, we start iterating `right` from index `0`: <br>
 
 <pre>
  l,r 
@@ -252,7 +252,7 @@ End keep going until we find the second `a` <br>
   a b c a b c b b
 </pre>
 
-Then we shift `left` pointer unill `a` will be not present iside current `window` <br>
+Then we shift `left` pointer until `a` will be not present inside current `window` <br>
 
 <pre>
     l   r
@@ -287,7 +287,7 @@ for (let right = 0; right < s.length; right++) {
   // Store new unique char
   char.add(s[right]);
 
-  // `right - left + 1`, is representation of current `window` length
+  // `right - left + 1`, is a representation of the current `window` length
   // We add + 1, since we count from `0`
   maxLength = Math.max(maxLength, rihgt - left + 1);
 }
@@ -299,7 +299,7 @@ return maxLength;
 
 # 6. Binary Search
 Binary search is the algorithm to search inside a sorter array, with time complexity `O(log n)`. <br>
-We achive this time complexity by comparing `middle` item of array to `target` value, and shift `right` and `left` pointers according to `middle` one.
+We achieve this time complexity by comparing `middle` item of the array to `target` value and shifting `right` and `left` pointers according to `middle` one.
 
 ## Example
 Given a `target` returns `true` if it's present in the `nums` and `false` if not. <br>
@@ -307,13 +307,13 @@ Given a `target` returns `true` if it's present in the `nums` and `false` if not
 `target = 9` <br>
 `nums = [-1,0,3,5,9,12]` <br>
 
-Implementation is the same as two pointer algorithm, we init `left` - start of array and `right` - end of array, and the main idea to get middle item of array. <br>
-This formula helps with calculation of `middle` item: <br>
+Implementation is similar to two pointer algorithm, we init `left` - start of the array and `right` - end of the array, and the main idea is to get a middle item of the array. <br>
+This formula helps with the calculation of `middle` item: <br>
 `const middle = Math.floor((right+left)/2);`
 
-We this in mind we can start by running while loop, unill `left` pointer is smaller then `right`. <br>
+We this in mind we can start by running a while loop until the `left` pointer is smaller then `right`. <br>
 
-Here's the fist iteration: <br>
+Here's the first iteration: <br>
 <pre>
    l      m         r
    |      |         |
@@ -327,13 +327,13 @@ Then we have three cases:
 2. `nums[middle] > target` - shift `right` pointer to make `middle` value smaller
    - `right = middle - 1`
 3. `nums[middle] < target` - shift `left` pointer to make `middle` value bigger
-   - `right = left + 1`
+   - `left = middle + 1`
 
-* Please note taht we are not simplly shift our pointer on one position up or down, but we also includes `middle` position. <br>
+* Please note that we do not simply shift our pointer on one position up or down, but we also include `middle` position. <br>
 
 Next one, here's why we include `middle` pointer value to `left` and `right` pointers calculation.<br>
-Since we are searching inside sorted array, from the first step we knew that all values that goes before `middle` pointer are smaller than `target`. <br>
-So there are no need to include them, and then's why `left = middle + 1`.<br>
+Since we are searching inside a sorted array, from the first step we knew that all values that go before `middle` pointer are smaller than `target`. <br>
+So there is no need to include them, and that's why `left = middle + 1`.<br>
 <pre>
           l     m   r
           |     |   |
@@ -341,7 +341,7 @@ So there are no need to include them, and then's why `left = middle + 1`.<br>
   [-1, 0, 3, 5, 9, 12]
 </pre> <br>
 
-We reach our `base case` - `nums[middle] = target` so that means that `target` item exist in `nums`.
+We reach our `base case` - `nums[middle] = target` so that means that `target` item exists in `nums`.
 
 ## Code
 
@@ -376,7 +376,7 @@ return -1;
 
 # 7. Linked list
 
-Linked list is the data structure, where each item have it's own value and pointer, which is pointing to the next one. <br>
+Linked list is a data structure, where each item has it's own value and pointer, which points to the next one. <br>
 
 Implementation:
 ```js
@@ -389,15 +389,15 @@ Implementation:
 
   // Start of the linked list
   let head = new ListNode(1, null);
-  // Dyncamic pointer, which needed to update values
+  // Dynamic pointer, which needed to update values
   // Set it to `head`, since `head` contains only one node 
   let pointer = head;
 
   let secondNode = new ListNode(2, null);
-  // Add second node, to head
+  // Add the second node, to head
   pointer.next = secondNode;
   // Update `pointer` value, to keep appending new nodes
-  // If we will not update it, second value will be overrided by the third entry
+  // If we will not update it, the second value will be overridden by the third entry
   pointer = pointer.next;
 
   let thirdNode = new ListNode(3, null);
@@ -418,13 +418,13 @@ Given the `head` of a singly linked list, reverse the list, and return the `reve
 Input = `head` = `(1)->(2)->(3)->(4)->(5)`
 Output = `newHead` = `(5)->(4)->(3)->(2)->(1)`
 
-Implementation is pretty simple, if you understand what I writte above about diffenition of LinkedList. <br>
-We need to create `newHead`, that will contain reversed list. <br>
+Implementation is pretty simple if you understand what I wrote above about the definition of LinkedList. <br>
+We need to create `newHead`, which will contain a reversed list. <br>
 Next is needed to iterate threw add `head`, and append each node on the start of the list `newHead`, that operation will reverse list nodes. <br>
 
-Code will word like this: <br>
+The code will word like this: <br>
 We store `head.next` value inside `next` temporary variable. <br>
-Next we update `head.next` with reversed head `newHead`, to append rersed values to the `head`. <br>
+Next, we update `head.next` with reversed head `newHead`, to append rersed values to the `head`. <br>
 Then assign `head` to `newHead` and store all the reversed values so far. <br>
 
 First iteration: <br>
@@ -435,7 +435,7 @@ Second Iteration: <br>
 `newHead` = `(1)->(2)` <br>
 `head` = `(3)->(4)->(5)` <br>
 
-And we will keep iteration, untill `head` contains some values. <br>
+And we will keep iteration, until `head` contains some values. <br>
 
 ## Code
 
@@ -467,11 +467,11 @@ And we will keep iteration, untill `head` contains some values. <br>
 # 8. Recursion
 Before covering more advanced topics let's review recursion. <br>
 
-Resursion - the programming pattern, where function call itself multiple times. <br>
-With each call we put our current function inside `call stack` and continue calling next functions. <br>
-When you writting recursive function you must define the `base case`, some condition where function will stop execution, to prevent `infinity loop`. <br>
-After we reach point where last function reach it's `base case`, we look at the `call stack` and `pop` each function from the end.
-When the `call stack` is empty end each function reach it's `base case` we exit the function.
+Recursion - the programming pattern, where a function calls itself multiple times. <br>
+With each call, we put our current function inside `call stack` and continue calling the next functions. <br>
+When you write a recursive function you must define the `base case`, some condition where a function will stop execution, to prevent `infinity loop`. <br>
+After we reach a point where the last function reaches its `base case`, we look at the `call stack` and `pop` each function from the end.
+When the `call stack` is empty end each function reaches its `base case` we exit the function.
 
 Let's see the implementation of recursion on some example. <br>
 
@@ -480,15 +480,15 @@ Given `n` pairs of parentheses, write a function to generate all combinations of
 Input `n` = 2 <br>
 Output = `['(())', '()()']` <br>
 
-Only cath here is `n`, you need to understand that `n` is maximum count of each parenthesis we can use in one combination. <br>
+The only catch here is `n`, you need to understand that `n` is the maximum count of each parenthesis we can use in one combination. <br>
 
-Code is bellow, let me cover here the order of operation and the `call stack`. <br>
-I changed a bit function naming for better understanding, because function `genetare`, contains two call to `generate` with different conditions.
+The code is bellow, let me cover here the order of operation and the `call stack`. <br>
+I changed a bit function naming for better understanding, because function `genetare`, contains two calls to `generate` with different conditions.
 So i name them `generate1` for openning `parenthesis` and `generate2` for closing.
 
 1. Step: <br>
 Call `generate` function with initial params. <br>
-Then append '(' to the `current` string, incarease `open` counter by one, and recursively call `generate` with new parameters<br>
+Then append '(' to the `current` string, increase `open` counter by one, and recursively call `generate` with new parameters<br>
 
 Here's the `call stack` so far: <br>
 <pre>
@@ -500,7 +500,7 @@ Here's the `call stack` so far: <br>
 </pre> <br>
 
 2. Step: <br>
-Repeat same thing we did in the first step. <br>
+Repeat the same thing we did in the first step. <br>
 
 `Call stack` situation:
 <pre>
@@ -514,7 +514,7 @@ Repeat same thing we did in the first step. <br>
 </pre> <br>
 
 3. Step: <br>
-We reach the oppening parenthesis limit, so we started to adding ')' one the end, and increasing `close` counter. <br>
+We reached the opening parenthesis limit, so we started adding ')' on the end, and increasing `close` counter. <br>
 
 `Call stack` situation:
 <pre>
@@ -548,10 +548,10 @@ Do the the same thing. <br>
 </pre> <br>
 
 5. Step: <br>
-Finally we reached `base case` so we can store `current = '(())'` in `result`, and exit from this function.<br>
-After calling `return`, we removing `generate2('(())', 2, 2)` from `call stack`.<br>
+Finally, we reached `base case` so we can store `current = '(())'` in `result`, and exit from this function.<br>
+After calling `return`, we remove `generate2('(())', 2, 2)` from `call stack`.<br>
 Then we bo back to function `generate2('(()', 2, 1)`.<br>
-Since we don't have any logic, after calling `generate2`, this function is also me marked as `executed` and it will be removed from `call stack`. <br>
+Since we don't have any logic, after calling `generate2`, this function is also marked as `executed` and it will be removed from `call stack`. <br>
 
 Now call stack is looking like this: <br>
 <pre>
@@ -565,9 +565,9 @@ Now call stack is looking like this: <br>
 </pre> <br>
 
 But we are not done with it, all of the `generate2` function of `generate1('((', 2, 0)` is executed <br>
-So there is no other ways, to keep calculation in this function, so we also remove it. <br>
+So there is no other way, to keep calculation in this function, so we also remove it. <br>
 
-Our final look of the `call stack` is:
+Here's the final look of the `call stack`:
 <pre>
   + -------------------------------- +
   |            call stack            |
@@ -609,7 +609,7 @@ Executing `generate1`. <br>
 </pre> <br>
 
 7. Step:
-Executing `generate2`, since `open` is equal to boundary. <br>
+Executing `generate2`, since `open` is equal to the boundary. <br>
 
 `Call stack` situation:
 <pre>
@@ -641,16 +641,16 @@ This means that we can clear all of the remaining items from `call stack` and ex
   // Open - count of opened parenthesis
   // Close - count of closed parenthesis
   const generate = (current, open, close) => {
-    // Base case, where we reach limit of open and closed parenthesis
+    // Base case, where we reach a limit of open and closed parenthesis
     if (open === n && close === n) {
-      // Store current string inside responce 
+      // Store current string inside response 
       res.push(current);
       // Exit from function, to prevent infinity loop
       return;
     }
     // First, fill current string with open parenthesis
     // Since we need to calculate `valid` combinations
-    // Check if open count is in bound
+    // Check if open count is inbound
     if (open < n) {
       // If yes, append '(' on top of the current string
       // And increate `open` counter, since we add open parenthesis
@@ -669,8 +669,8 @@ This means that we can clear all of the remaining items from `call stack` and ex
 ------------------------------------------------------------------------------------------------------
 
 # 9. Tree
-Implementation is pretty similar to Linked list. <br>
-Exept `tree` contains two pointer values `left` and `right`, thouse will point on the each `leaf` of current node.
+Implementation is pretty similar to the Linked list. <br>
+Except `tree` contains two pointer values `left` and `right`, those will point to each `leaf` of the current node.
 
 ## Implementation:
 ```js
@@ -714,17 +714,17 @@ Exept `tree` contains two pointer values `left` and `right`, thouse will point o
 ```
 <br>
 
-From code above, we can imagine that previoslly innited tree will look like this:
+From the code above, we can imagine that previously initialized tree will look like this:
 
 ![image](https://github.com/romaschka1/Data-Structures-Algorithms/assets/46795634/29a74228-2c56-40c5-ae7a-a1171f706ab3)
 
-Node, that `()` is represending the `null` pointer.
+Node, that `()` is representing the `null` pointer.
 
 
 ## DFS (Depth first search)
 DFS - recursive algorithm, to get `tree nodes` from bottom to top. <br>
 
-Thre is three types of `DFS`, and what output each type returns:
+There is three types of `DFS`, and what output each type returns:
 * Inorder (left.val, node.val, right.val) ->  4, 2, 5, 1, 6, 3, 7 
 * Preorder (node.val, left.val, right.val) ->  1, 2, 4, 5, 3, 6, 7
 * Postorder (left.val, right.val, node.val) ->  4, 5, 2, 6, 7, 3, 1
@@ -770,8 +770,8 @@ Thre is three types of `DFS`, and what output each type returns:
 
 
 ## BFS (Breath first search)
-As you can saw on the image, I split `tree` to levels. <br>
-If we need group all the `node` values on each levels, we use `BFS` algorithm.
+As you can see on the image, I split `tree` to levels. <br>
+If we need to group all the `node` values on each level, we use `BFS` algorithm.
 
 ### BFS implementation
 ```js
@@ -808,3 +808,143 @@ let res = [];
   console.log(res);
   // [ [ 1 ], [ 2, 3 ], [ 4, 5, 6, 7 ] ]
 ```
+
+# 9. Heap
+Heap is the data structure, where values are stored in acceding order - `MinHeap` or descending `MaxHeap`.
+Heap has the same functions as the stack `push`, and `pop` with the same execution time of `O(log(n))` since we store values in a binary search tree. <br>
+
+Let's implement it! <br>
+
+First, define the `minHeap` class. <br>
+
+```js
+class MinHeap {
+  constructor () {
+    // Data is the array, which represents the `binary search tree`
+    // Where a left child is always smaller than the right one
+    this.data = [];
+  }
+}
+```
+
+Then, define helper functions: <br>
+
+Retrieves item index: <br>
+
+```js
+getParentIndex(index) {
+  return Math.floor((index - 1) / 2);
+}
+getLeftChildIndex(index) {
+  return 2 * index + 1;
+}
+getRightChildIndex(index) {
+  return 2 * index + 2;
+}
+```
+
+Check if an item is present: <br>
+
+```js
+hasParent(index) {
+  return this.getParentIndex(index) >= 0;
+}
+hasLeftChild(index) {
+  return this.getLeftChildIndex(index) < this.data.length;
+}
+hasRightChild(index) {
+  return this.getRightChildIndex(index) < this.data.length;
+}
+```
+
+Retrieves item: <br>
+
+```js
+getParent(index) {
+  return this.data[this.getParentIndex(index)];
+}
+getLeftChild(index) {
+  return this.data[this.getLeftChildIndex(index)];
+}
+getRightChild(index) {
+  return this.data[this.getRightChildIndex(index)];
+}
+```
+
+Swap nodes: <br>
+
+```js
+swap(firstIndex, secondIndex) {
+  let temp = this.data[firstIndex];
+  this.data[firstIndex] = this.data[secondIndex];
+  this.data[secondIndex] = temp;
+}
+```
+
+After we define all of the helper functions, then we need to implement:
+* `HeapifyUp` - Method to validate the order of heap elements from top to bottom
+* `HeapifyDown` - Method to validate the order of heap elements from bottom to top
+
+```js
+// Method to validate the order of heap elements from top to bottom
+heapifyDown(index) {
+  // Get current parent index
+  let smallest = index;
+
+  // Two if statement to get the smallest right or left child
+  if (this.hasLeftChild(index) && this.data[smallest] > this.getLeftChild(index)) {
+    smallest = this.getLeftChildIndex(index);
+  }
+  if (this.hasRightChild(index) && this.data[smallest] > this.getRightChild(index)) {
+    smallest = this.getRightChildIndex(index);
+  }
+
+  if (smallest != index) {
+    this.swap(index, smallest);
+    this.heapifyDown(smallest);
+  }
+}
+```
+
+```js
+// Method to validate the order of heap elements from bottom to top
+heapifyUp(index) {
+  // If `parent` is smaller than `current node`
+  if(this.hasParent(index) && this.getParent(index) > this.data[index]) {
+    // Swap `parent` and `current node`
+    this.swap(this.getParentIndex(index), index);
+    // Recursively call `heapifyUp` to validate the next parent+child pair
+    // Pass new `current node` index
+    this.heapifyUp(this.getParentIndex(index));
+  }
+}
+```
+
+And finally, define methods to store and remove items: <br>
+
+```js
+push(item) {
+  this.data.push(item);
+  // Sort heap from bottom(where new item was inserted) to top
+  // Pass inserted node index, to get starting position
+  this.heapifyUp(this.data.length - 1);
+}
+
+pop() {
+  if (this.data.length === 0) {
+    return;
+  }
+  // Get the smallest value to return
+  let node = this.data[0];
+  // Replace `root` element, with the last node
+  this.data[0] = this.data.pop();
+  
+
+  // Validate all heaps from top to bottom
+  this.heapifyDown(0);
+  return node;
+}
+```
+
+
+
