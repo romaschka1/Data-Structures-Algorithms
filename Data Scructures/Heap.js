@@ -14,7 +14,6 @@ class Heap {
   scoreFunction;
 
   constructor(scoreFunction) {
-    content = content;
     // `(x) => x`      - score function for min heap
     // `(x) => -x`     - score function for max heap
     // `(x) => x[key]` - score function for comparing objects
@@ -100,8 +99,8 @@ class Heap {
       // If the first child exists (is inside the array)...
       if (child1N < length) {
         // Look it up and compute its score.
-        const child1 = this.content[child1N],
-        child1Score = this.scoreFunction(child1);
+        const child1 = this.content[child1N];
+        var child1Score = this.scoreFunction(child1);
         // If the score is less than our element's, we need to swap.
         if (child1Score < elemScore)
           swap = child1N;

@@ -1,4 +1,4 @@
-// Regular implementation for binary search
+// Regular implementation of binary search
 function regularBinarySearch() {
   const arr = [1,2,3,4,5,6];
 
